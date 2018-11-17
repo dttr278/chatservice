@@ -29,7 +29,6 @@ public class CORSFilter implements Filter {
 	        filterChain.doFilter(servletRequest, servletResponse);
 		
 	}
-
 	public void destroy() {
 		// TODO Auto-generated method stub
 		

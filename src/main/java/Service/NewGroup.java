@@ -1,7 +1,5 @@
 package Service;
 
-
-
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -13,21 +11,20 @@ import Model.Authentication;
 import Model.DatabaseManagement;
 import Model.Result;
 
-@Path("/addcontact")
-public class AddContact {		
+@Path("/newgroup")
+public class NewGroup {
 	@POST
-	@Path("{id2}")
+	@Path("{name}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String add(@PathParam("id2") String id2,@HeaderParam("Authorization") String token) {
+	public String add(@PathParam("name") String name,@HeaderParam("Authorization") String token) {
 		String id="0";
 		int rs=0;
 		try {
 			id=Authentication.getId(token);
-			rs=DatabaseManagement.addContact(id, id2);
+			rs=DatabaseManagement.newGroup(id, name);
 		} catch ( Exception e) {
 			System.out.println(e);
 		}
 		return Result.toJSResult(rs);
 	}
-
 }

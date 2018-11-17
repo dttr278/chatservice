@@ -8,7 +8,6 @@ package Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.HeaderParam;
-import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -27,15 +26,15 @@ import Model.Result;
 @Path("seen")
 public class Seen{
 	private @Context HttpServletRequest request;
-	@POST
-	@Path("{id2}")
+	@PUT
+	@Path("{chatId}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String seen(@PathParam("id2") String id2,@HeaderParam("Authorization") String token) {
+	public String seen(@PathParam("chatId") String chatId,@HeaderParam("Authorization") String token) {
 		String id = null;
 		int rs=0;
 		try{
 			id=Authentication.getId(token);
-			rs= DatabaseManagement.seen(id, id2);
+			rs= DatabaseManagement.seen(id, chatId);
 		} catch (Exception e) {
 		}
 

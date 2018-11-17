@@ -25,7 +25,6 @@ public class Search {
 	@Path("{id2}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public String srch(@PathParam("id2") String id2) {
-		System.out.println(id2);
 		return Result.toJSResult(DatabaseManagement.search(id2));
 	}
 }
