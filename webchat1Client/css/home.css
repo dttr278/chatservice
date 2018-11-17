@@ -1,0 +1,54 @@
+
+.login-form{
+	margin: auto;
+	max-width: 250px;
+	min-width: 150px;
+	padding: 10px; 
+	text-align: center;
+	color: #333333;
+}
+#login{
+	text-align: left;
+}
+
+.login-form label{
+	display: inline-block;
+}
+div{
+	display: block;
+}
+.group{
+	margin-bottom: 10px;
+	position: relative;
+}
+.warring{
+	color: red;
+	font-size: 12px;
+}
+
+.forgot-password{
+	position: absolute;
+    top: 5px;
+    right: 0;
+    font-size: 12px;
+    text-decoration: underline;
+    color: #888;
+    cursor: pointer;
+}
+
+#sign-in-link,#sign-up-link, .checkbox-custom-label{
+	cursor: pointer;
+}
+#sign-in-link:hover,#sign-up-link:hover, .checkbox-custom-label:hover{
+	opacity: 0.6;
+}
+
+#signup{
+	display: none;
+}
+
+#noti-sign-in, #noti-sign-up{
+	display: block;
+	width: 100%;
+	text-align: center;
+}
