@@ -25,13 +25,15 @@ public enum Hash {
     }
 
     public String checksum(File input) {
-        try (InputStream in = new FileInputStream(input)) {
+        try{
+        	InputStream in = new FileInputStream(input);
             MessageDigest digest = MessageDigest.getInstance(getName());
             byte[] block = new byte[4096];
             int length;
             while ((length = in.read(block)) > 0) {
                 digest.update(block, 0, length);
             }
+            in.close();
             return DatatypeConverter.printHexBinary(digest.digest());
             
         } catch (Exception e) {
