@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">  
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu:500' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/home.css">
+    <script src="js/home.js"></script>
+    <title>home</title>
+</head>
+<body>
+   <div class="login-form">
+       <div id="login">
+           <form id="signin" method="post">
+                <h1 style="text-align: center;">Sign-in</h1>
+                <div class="group">
+                    <label for="user">User:</label>
+                    <input type="text" id="user" name="username" required>
+                    <span class="warring"></span>
+                </div>
+                <div class="group">
+                    <label for="pass">Password:</label>
+                    <input type="password" id="pass" name="password" required>
+                    <span class="warring"></span>
+                </div>
+                <div class="group ">
+                    <input id="remember-me" class="checkbox-custom" name="checkbox-1" type="checkbox" checked>
+                    <label for="remember-me" class="checkbox-custom-label">Ghi nhớ</label>
+                    <a href="#" class="forgot-password">Quên mật khẩu</a>
+                </div>
+                <div class="group ">
+                    <label for="name"></label>
+                    <button id="btn-sign-in"  type="button">Sign in</button>
+                    <span class="warring" id="noti-sign-in"></span> 
+                </div>
+                <label  id="sign-up-link" class="group sign-in-footer">Sign up</label>
+            </form>
+            <form id="signup">
+                <h1 style="text-align: center;">Sign-up</h1>
+                <div class="group">
+                    <label for="user_sgup">User:</label>
+                    <input type="text" id="user_sgup" required>
+                    <span class="warring"></span>
+                </div>
+                <div class="group">
+                    <label for="pass_sgup">Password:</label>
+                    <input type="password" id="pass_sgup" required>
+                    <span class="warring"></span>
+                </div>
+                <div class="group">
+                    <label for="repass_sgup">Password:</label>
+                    <input type="password" id="repass_sgup" required>
+                    <span class="warring"></span>
+                </div>
+                <div class="group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" value="@gmail.com" required>
+                    <span class="warring"></span>
+                </div>
+                <div class="group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" required>
+                    <span class="warring"></span>
+                </div>
+                <div class="group ">
+                    <input id="nam" class="checkbox-custom" name="gender" type="radio" value="nam" checked>
+                    <label for="nam" class="checkbox-custom-label">Nam</label>
+                    <input id="nu" class="checkbox-custom" name="gender" type="radio" value="nữ">
+                    <label for="nu" class="checkbox-custom-label">Nữ</label>
+                </div>
+                <div class="group">
+                    <label for="btn-sign-up"></label>
+                    <button type="button" id="btn-sign-up">Sign up</button>
+                    <span class="warring" id="noti-sign-up"></span>
+                </div>
+                <label  id="sign-in-link">Sign in</label>
+            </form>
+        </div>
+   </div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>info</title>
+    <link rel="stylesheet" href="css/info.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/info.js"></script>
+    <link rel="stylesheet" href="messagebox/messagebox_style.css">
+    <script src="messagebox/messagebox_script.js"></script>
+</head>
+<body>
+    <div id="top-bar"">
+           
+        <div id="search">
+            <input type="text" id="search-input" style="width: 80%;" placeholder="Tìm kiếm">
+            <button id="search-btn" ><i class="material-icons">search</i></button>
+        </div>
+        <div id="user-link">
+            <a class="user-info" href="info.html">
+                <img src="src/44.jpg" id="avatar"  style="width:25px;height:25px">   
+                <span id="name"></span>
+            </a>
+            <a class="user-info" href="chat.html"> Home</a>
+            <a class="user-info"  href="logout.html"> Logout</a>
+        </div>
+    </div>
+    <div class="center">
+        <div>
+            <div style="display: inline-block;">
+                <div class="avatar-box"  style="width:100px;height:100px;position: relative;"> 
+                    <img src="src/44.jpg"class="avatar" style="width:100px;height:100px">
+                    <div id="change-avatar">
+                        <label class="input-custom-file">
+                            <span style="color:white">cập nhật</span>
+                            <input name="file" type="file" id="file" title="Thêm file" accept="image/x-png,image/gif,image/jpeg">
+                        </label>   
+                    </div>
+                </div>
+                <button style="width: auto;display: block" id="btn-add">+ Thêm bạn</button>
+            </div>
+            <ul class="info" style="margin:auto;display: inline-block;">
+                <li><b>Tên:</b> <i class="name"></i></li>
+                <li><b>Giới tính:</b> <i class="sex"></i></li>
+                <li><b>Email:</b> <i class="email"></i></li>
+                <li><b>UserName:</b> <i class="username"></i></li>
+                <!-- <li><b>Tên:</b> <i>Đỗ Tấn Trung</i></li> -->
+            </ul>
+        </div>
+        
+    </div>
+</body>
+</html>
