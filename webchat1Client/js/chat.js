@@ -526,7 +526,7 @@ function postFilesData(data)
     $("#messages").append(a);
 
     $.ajax({
-        url: 'http://localhost:8080/webchat1/file/send/'+currentId,
+        url: host+'file/send/'+currentId,
         type: 'POST',
         data: data,
         processData: false, 
