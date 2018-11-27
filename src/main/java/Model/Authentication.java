@@ -23,7 +23,8 @@ public class Authentication {
 		long nowMillis = System.currentTimeMillis();
 	    Date now = new Date(nowMillis);
 		//Let's set the JWT Claims
-	    JwtBuilder builder = Jwts.builder().setId(id)
+	    @SuppressWarnings("deprecation")
+		JwtBuilder builder = Jwts.builder().setId(id)
 	                                .setIssuedAt(now)
 	                                .setSubject(subject)
 	                                .setIssuer(issuer)
@@ -40,7 +41,8 @@ public class Authentication {
 	    return builder.compact();
 	}
 	public static String createJWT(String id) {
-	    JwtBuilder builder = Jwts.builder().setId(id)
+	    @SuppressWarnings("deprecation")
+		JwtBuilder builder = Jwts.builder().setId(id)
 	                                .signWith(signatureAlgorithm, signingKey);
 	    return builder.compact();
 	}

@@ -51,6 +51,18 @@
             <artifactId>jersey-core</artifactId>
             <version>1.19.2</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.sun.jersey.contribs/jersey-multipart -->
+		<dependency>
+		    <groupId>com.sun.jersey.contribs</groupId>
+		    <artifactId>jersey-multipart</artifactId>
+		    <version>1.19.2</version>
+		</dependency>
+        <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+		<dependency>
+		    <groupId>commons-io</groupId>
+		    <artifactId>commons-io</artifactId>
+		    <version>2.6</version>
+		</dependency>
         
         <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
 		<dependency>
@@ -74,18 +86,18 @@
 		    <groupId>io.jsonwebtoken</groupId>
 		    <artifactId>jjwt-jackson</artifactId>
 		    <version>0.10.5</version>
-		    <scope>runtime</scope>
-</dependency>
-
+		    <scope>runtime</scope>	   
+		</dependency>
+		
 		
   </dependencies>
   <build>
     <finalName>webchat1</finalName>
         <plugins>
 	    <plugin>
-		    <groupId>org.apache.tomcat.maven</groupId>
-		    <artifactId>tomcat7-maven-plugin</artifactId>
-		    <version>2.2</version>
+	    	 <groupId>org.apache.tomcat</groupId>
+		     <artifactId>tomcat</artifactId>
+		     <version>8.5.35</version>
 		</plugin>
 		<plugin>
             <groupId>org.apache.maven.plugins</groupId>

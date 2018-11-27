@@ -25,6 +25,7 @@ public class DatabaseManagement {
     	 String sql="{? = call check_login(?,?)}";
          int id=0;
     	 try {
+    		if(con==null)con=MSSQLJDBCConnection.getJDBCConnection();
             CallableStatement cstm=con.prepareCall(sql);
 
             cstm.registerOutParameter(1, Types.INTEGER);
@@ -40,14 +41,15 @@ public class DatabaseManagement {
     	 return id;
     }
 
-    public static String getInfo(String id) {
-        String sql="{call get_info(?)}";
+    public static String getInfo(int id,int id2) {
+        String sql="{call get_info(?,?)}";
         
         CallableStatement cstm;
         ResultSet rs=null;
 		try {
 			cstm = con.prepareCall(sql);
-			 cstm.setInt(1, Integer.valueOf(id));
+			 cstm.setInt(1, id);
+			 cstm.setInt(2, id2);
 		   rs =cstm.executeQuery();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -88,12 +90,14 @@ public class DatabaseManagement {
      }
      return -1;
     }
-    public static String search(String name){
-        String str="{call search (?)}";
+    public static String search(int id,String name,int top){
+        String str="{call search (?,?,?)}";
         ResultSet rs=null;
         try {
             CallableStatement cstm=con.prepareCall(str);
-            cstm.setString(1, name);
+            cstm.setInt(1, id);
+            cstm.setString(2, name);
+            cstm.setInt(3, top);
             rs=cstm.executeQuery();
            
         } catch (SQLException ex) {
@@ -215,21 +219,20 @@ public class DatabaseManagement {
     	return -1;
     }
     
-    public static int addMessage(String id,String chatId,String ms) {
-    	String sql="{?=call add_ms (?,?,?)}";
+    public static String addMessage(String id,String chatId,String ms) {
+    	String sql="{call add_ms (?,?,?)}";
+    	 ResultSet rs=null;
     	try {
     		 CallableStatement cstm= con.prepareCall(sql);
-    		 cstm.registerOutParameter(1, Types.INTEGER);
-    		 cstm.setInt(2, Integer.valueOf(id));
-             cstm.setInt(3, Integer.valueOf(chatId)); 
-             cstm.setString(4, ms);
-			 cstm.executeUpdate();
-			 return cstm.getInt(1);
+    		 cstm.setInt(1, Integer.valueOf(id));
+             cstm.setInt(2, Integer.valueOf(chatId)); 
+             cstm.setString(3, ms);
+             rs=cstm.executeQuery();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	return -1;
+    	return JsonServices.convertToJSONObj(rs);
     }
     public static String getMessages(String chatId,String id,String top,String bigthan,String smallthan){
         String str="{call get_messages (?,?,?,?,?)}";
@@ -363,15 +366,14 @@ public class DatabaseManagement {
     	return -1;
     }
     public static int renameChat(String userId,String chatId,String name) {
-    	String sql="{?=call rename (?,?,?)}";
+    	String sql="{call rename (?,?,?)}";
     	try {
     		 CallableStatement cstm= con.prepareCall(sql);
-    		 cstm.registerOutParameter(1, Types.INTEGER);
-    		 cstm.setInt(2, Integer.valueOf(chatId));
-             cstm.setInt(3, Integer.valueOf(userId)); 
-             cstm.setString(4, name);
-			 cstm.executeUpdate();
-			 return cstm.getInt(1);
+    		 cstm.setInt(1, Integer.valueOf(chatId));
+             cstm.setInt(2, Integer.valueOf(userId)); 
+             cstm.setString(3, name);
+			 
+			 return cstm.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -379,8 +381,78 @@ public class DatabaseManagement {
     	return -1;
     }
     
+//    public static int upFile(String name,String path,String type) {
+//    	String sql="{?=call up_file (?,?,?)}";
+//    	try {
+//    		 CallableStatement cstm= con.prepareCall(sql);
+//    		 cstm.registerOutParameter(1, Types.INTEGER);
+//    		 cstm.setString(2, name);
+//             cstm.setString(3, path); 
+//             cstm.setString(4, type);
+//			 cstm.executeUpdate();
+//			 return cstm.getInt(1);
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//    	return -1;
+//    }
+    public static MyFile getFile(int id) {
+    	String sql="{call get_file (?)}";
+    	try {
+    		 CallableStatement cstm= con.prepareCall(sql);
+    		 cstm.setInt(1, id);
+			 ResultSet rs=cstm.executeQuery();
+			 MyFile mf=new MyFile();
+			 rs.next();
+			 mf.setName(rs.getString(2));
+			 mf.setPath(rs.getString(3));
+			 mf.setType(rs.getString(4));
+			 return mf;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return null;
+    }
+    public static int changeAvatar(int id,MyFile mf) {
+    	String sql="{?=call change_avatar (?,?,?,?)}";
+    	try {
+    		 CallableStatement cstm= con.prepareCall(sql);
+    		 cstm.registerOutParameter(1, Types.INTEGER);
+    		 cstm.setInt(2, id);
+             cstm.setString(3, mf.getName()); 
+             cstm.setString(4, mf.getPath()); 
+             cstm.setString(5, mf.getType()); 
+             cstm.executeUpdate();
+			 return cstm.getInt(1);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return -1;
+    }
+    public static String sendFile(int id,int id2,String body,MyFile mf) {
+    	String sql="{call send_file (?,?,?,?,?,?)}";
+    	ResultSet rs=null;
+    	try {
+    		 CallableStatement cstm= con.prepareCall(sql);
+    		 cstm.setInt(1, id);
+             cstm.setInt(2, id2); 
+             cstm.setString(3, body);
+             cstm.setString(4, mf.getName());
+             cstm.setString(5, mf.getPath());
+             cstm.setString(6, mf.getType());
+			 rs=cstm.executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return JsonServices.convertToJSONObj(rs);
+    }
 //    public static void main(String[] args) {
-//    	int a=DatabaseManagement.createUser("11", "11", "11", "nam", "11", "1-1-2001", "");
+//    	con=MSSQLJDBCConnection.getJDBCConnection();
+//    	MyFile a=DatabaseManagement.getFile(4);
 //		System.out.println(a);
 //	}
 }

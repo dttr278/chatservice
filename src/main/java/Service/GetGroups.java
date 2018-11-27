@@ -34,16 +34,6 @@ public class GetGroups {
 			,@PathParam("top") String top
 			,@PathParam("bigthan") String bigthan
 			,@PathParam("smallthan") String smallthan) {
-		bigthan=bigthan.trim();
-		if(bigthan.equals("null")||bigthan.isEmpty()) {
-			bigthan=null;
-			
-		}
-		smallthan=smallthan.trim();	
-		if(smallthan.equals("null")||smallthan.isEmpty()) {
-			smallthan=null;
-			
-		}
 		
 		String id = null,rs="0";
 		try{

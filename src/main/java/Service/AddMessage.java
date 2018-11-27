@@ -30,7 +30,7 @@ public class AddMessage{
 			,@QueryParam("message") String ms) 
 					throws UnsupportedEncodingException {
 		String id;
-		int rs=0;
+		String rs="0";
 		try {
 			id=Authentication.getId(token);
 			if(ms==null||ms.isEmpty()) {

@@ -14,10 +14,17 @@ import Model.Result;
 @Path("/info")
 public class GetInfo {
 	@GET
-	@Path("{id}")
+	@Path("{id2}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String getif(@PathParam("id") String id) {
-		return Result.toJSResult(DatabaseManagement.getInfo(id));
+	public String getif(@PathParam("id2") String id2,
+			@HeaderParam("Authorization") String token) {
+		String id = null,rs="0";
+		try{
+			id=Authentication.getId(token);
+			rs= DatabaseManagement.getInfo(Integer.valueOf(id),Integer.valueOf(id2));
+		} catch (Exception e) {
+		}
+		return Result.toJSResult(rs);
 	}
 	
 	@GET
@@ -26,7 +33,7 @@ public class GetInfo {
 		String id = null,rs="0";
 		try{
 			id=Authentication.getId(token);
-			rs= DatabaseManagement.getInfo(id);
+			rs= DatabaseManagement.getInfo(Integer.valueOf(id),Integer.valueOf(id));;
 		} catch (Exception e) {
 		}
 		return Result.toJSResult(rs);
