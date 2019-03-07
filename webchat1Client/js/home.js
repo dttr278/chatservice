@@ -1,5 +1,5 @@
-﻿// var host="http://localhost:8080/webchat1/";
-var host="https://dttrchatservice.herokuapp.com/";
+﻿var host="https://dttrchatservice.herokuapp.com/";
+//var host="http://localhost:8080/webchat1/";
 $(document).ready(function(){
     localStorage.setItem("host",host);
     $("#sign-up-link").click(function(){
@@ -24,7 +24,25 @@ $(document).ready(function(){
             function(data, status){ 
                 if(data.token!=0){ 
                     localStorage.setItem("token",data.token);
-                    window.location.href="chat.html";
+                    $.ajaxSetup({
+                        headers:{
+                           'Authorization': data.token,
+                           'Accept': 'application/json'
+                        }
+                     });
+                     $.get(host+"info",function(data,status){
+                        if(data.result!=null&&data.result!=0){
+                            var user=data.result;
+                            // alert(user.id);
+                            // alert(user.name);
+                            // alert(user.id);
+                            localStorage.setItem('name',user.name);
+                            localStorage.setItem('avatar',user.avatar);
+                            localStorage.setItem('id',user.id);
+                            window.location.href="chat.html";
+                         }
+                    });
+                   
                     
                 }else{
                     $("#noti-sign-in").text("Thông tin không chính xác !");

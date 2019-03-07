@@ -89,7 +89,7 @@ function uploadFile(event)
 function postFilesData(data)
 {
     $.ajax({
-        url: 'http://localhost:8080/webchat1/avatar',
+        url: host+'avatar',
         type: 'POST',
         data: data,
         processData: false, 
