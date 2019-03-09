@@ -597,7 +597,7 @@ function loadNewGroups(lf) {
                 c = lf[i];
 
                 rvms = "";
-                if (c.sender != user.id && c.sender != "" && c.is_group == 'true')
+                if (c.sender != userId && c.sender != "" && c.is_group == 'true')
                     rvms = '<b>' + c.sender_name.substring(c.sender_name.lastIndexOf(" ")) + ':</b>';
                 if (c.seen_time == "")
                     rvms += '<b>' + c.body + '</b>';
@@ -643,7 +643,7 @@ function onclickOutGR() {
     doMessageBox('Bạn có muốn rời khỏi nhóm?',
         function () {
             $.ajax({
-                url: host + 'removegroupmember/' + currentId + '/' + user.id,
+                url: host + 'removegroupmember/' + currentId + '/' + userId,
                 type: 'delete',
                 success: function (data) {
                     if (data.result > 0) {
