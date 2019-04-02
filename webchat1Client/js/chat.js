@@ -183,8 +183,8 @@ function getChats() {
     $(".chat-list").append(a);
     $(".chat-list .chat").remove();
     $.get(host + "chats/9999", function (data, status) {
-        if (data.result != 0 && data.result != null) {
-            a.remove();
+		a.remove();
+        if (data.result != null) {
             loadChats(data.result);
         }
 

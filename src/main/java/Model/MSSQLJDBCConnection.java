@@ -17,7 +17,8 @@ import java.util.logging.Logger;
  */
 public class MSSQLJDBCConnection {
 //    static String url="jdbc:sqlserver://127.0.0.1:1433;databaseName=webchat1;user=sa;password=123456";
-    static String url="jdbc:sqlserver://den1.mssql7.gear.host;databaseName=webchat1;user=webchat1;password=Ev4x9?3XI7x!";
+//    static String url="jdbc:sqlserver://den1.mssql7.gear.host;databaseName=webchat1;user=webchat1;password=Ev4x9?3XI7x!";
+	static String url="jdbc:sqlserver://dttrchatservice.database.windows.net:1433;database=dttrchatservice;user=dttr@dttrchatservice;password=Tantrung278;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
     public static Connection getJDBCConnection(){
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");

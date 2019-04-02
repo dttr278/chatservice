@@ -1,5 +1,5 @@
-﻿var host="https://dttrchatservice.herokuapp.com/";
-//var host="http://localhost:8080/webchat1/";
+﻿//var host="https://dttrchatservice.herokuapp.com/";
+var host="http://localhost:8080/webchat1/";
 $(document).ready(function(){
     if (!(/Chrome/.test(navigator.userAgent)||/Firefox/.test(navigator.userAgent))||/Edge/.test(navigator.userAgent)) {
         document.write('<p style="color: red; font-weight: bold">Lưu ý: web chỉ chạy trên chrome hoặc firefox.<br/>'
